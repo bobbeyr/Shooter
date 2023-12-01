@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cam;
     private Vector2 axisMovement;
 
+    public bool canJump = true;
     public float jump;
 
     // Start is called before the first frame update
@@ -24,9 +25,10 @@ public class PlayerMovement : MonoBehaviour
         axisMovement.x = Input.GetAxisRaw("Horizontal");
         cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -1);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             body.velocity = new Vector2(body.velocity.x, jump);
+            canJump = false;
         }
     }
 
